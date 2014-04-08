@@ -194,7 +194,17 @@
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint];
     // Present Activity View Controller
+    [activityVC setCompletionHandler:^(NSString *activityType, BOOL completed){
+        
+        NSLog(@"completed dialog - activity: %@ - finished flag: %d", activityType, completed);
+        if ([activityType isEqualToString:@"com.apple.UIKit.activity.PostToFacebook"]) {
+        //show a custom message for successfull posting on FB
+        }else {
+        
+        }
+    }];
     [self presentViewController:activityVC animated:YES completion:nil];
+    
     //    }
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
